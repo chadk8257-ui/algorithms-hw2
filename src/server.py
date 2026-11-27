@@ -131,14 +131,16 @@ def _render_table_page(shortener: Shortener, selection: str) -> str:
     )
     selector = [
         '<form method="get" action="/table"><label for="strategy">'
-        "Display strategy</label> <select id=\"strategy\" name=\"strategy\">"
+        "Display strategy</label> "
+        '<select id="strategy" name="strategy" '
+        "onchange=\"this.form.submit()\">"
     ]
     for value, label in options:
         selected = ' selected="selected"' if value == selection else ""
         selector.append(
             f'<option value="{value}"{selected}>{escape(label)}</option>'
         )
-    selector.append('<button type="submit">Show</button></form>')
+    selector.append("</select> <button type=\"submit\">Show</button></form>")
 
     strategies = ("chaining", "linear_probing") if selection == "both" else (selection,)
     content = [
