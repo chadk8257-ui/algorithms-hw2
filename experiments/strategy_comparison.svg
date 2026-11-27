@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+<style>
+text{font-family:Arial,sans-serif;fill:#222}
+.title{font-size:21px;font-weight:bold}
+.panel-title{font-size:14px;font-weight:bold}
+.tick,.legend{font-size:10px}
+.grid{stroke:#ddd;stroke-width:1}
+.axis{stroke:#555;stroke-width:1}
+.series{fill:none;stroke-width:2}
+</style>
+<text x="500" y="28" text-anchor="middle" class="title">Chaining vs. linear probing</text>
+<text x="30" y="63" class="panel-title">Successful search — comparisons/query</text>
+<line x1="82" y1="243.0" x2="444" y2="243.0" class="grid"/>
+<text x="75" y="247.0" text-anchor="end" class="tick">0.0</text>
+<line x1="82" y1="202.0" x2="444" y2="202.0" class="grid"/>
+<text x="75" y="206.0" text-anchor="end" class="tick">1.5</text>
+<line x1="82" y1="161.0" x2="444" y2="161.0" class="grid"/>
+<text x="75" y="165.0" text-anchor="end" class="tick">3.1</text>
+<line x1="82" y1="120.0" x2="444" y2="120.0" class="grid"/>
+<text x="75" y="124.0" text-anchor="end" class="tick">4.6</text>
+<line x1="82" y1="79.0" x2="444" y2="79.0" class="grid"/>
+<text x="75" y="83.0" text-anchor="end" class="tick">6.2</text>
+<line x1="82" y1="79" x2="82" y2="243" class="axis"/>
+<line x1="82" y1="243" x2="444" y2="243" class="axis"/>
+<text x="82.0" y="259" text-anchor="middle" class="tick">0.1</text>
+<text x="172.5" y="259" text-anchor="middle" class="tick">0.3</text>
+<text x="263.0" y="259" text-anchor="middle" class="tick">0.5</text>
+<text x="353.5" y="259" text-anchor="middle" class="tick">0.7</text>
+<text x="444.0" y="259" text-anchor="middle" class="tick">0.9</text>
+<polyline points="82.0,215.8 127.2,213.6 172.5,212.5 217.8,211.3 263.0,209.8 308.2,207.7 353.5,206.5 398.8,205.6 444.0,204.5" stroke="#1769aa" class="series"/>
+<line x1="30" y1="283" x2="48" y2="283" stroke="#1769aa" class="series"/>
+<text x="53" y="287" class="legend">Chain measured</text>
+<polyline points="82.0,215.0 127.2,213.7 172.5,212.4 217.8,211.1 263.0,209.7 308.2,208.4 353.5,207.1 398.8,205.7 444.0,204.4" stroke="#64a6d9" class="series"/>
+<line x1="235" y1="283" x2="253" y2="283" stroke="#64a6d9" class="series"/>
+<text x="258" y="287" class="legend">Chain theory</text>
+<polyline points="82.0,215.6 127.2,212.9 172.5,211.4 217.8,208.5 263.0,204.1 308.2,199.2 353.5,183.9 398.8,165.7 444.0,118.9" stroke="#c62828" class="series"/>
+<line x1="30" y1="296" x2="48" y2="296" stroke="#c62828" class="series"/>
+<text x="53" y="300" class="legend">Linear measured</text>
+<polyline points="82.0,214.9 127.2,213.0 172.5,210.7 217.8,207.5 263.0,203.1 308.2,196.4 353.5,185.3 398.8,163.1 444.0,96.6" stroke="#ef7777" class="series"/>
+<line x1="235" y1="296" x2="253" y2="296" stroke="#ef7777" class="series"/>
+<text x="258" y="300" class="legend">Linear theory</text>
+<text x="520" y="63" class="panel-title">Unsuccessful search — comparisons/query</text>
+<line x1="572" y1="243.0" x2="934" y2="243.0" class="grid"/>
+<text x="565" y="247.0" text-anchor="end" class="tick">0.0</text>
+<line x1="572" y1="202.0" x2="934" y2="202.0" class="grid"/>
+<text x="565" y="206.0" text-anchor="end" class="tick">14.1</text>
+<line x1="572" y1="161.0" x2="934" y2="161.0" class="grid"/>
+<text x="565" y="165.0" text-anchor="end" class="tick">28.3</text>
+<line x1="572" y1="120.0" x2="934" y2="120.0" class="grid"/>
+<text x="565" y="124.0" text-anchor="end" class="tick">42.4</text>
+<line x1="572" y1="79.0" x2="934" y2="79.0" class="grid"/>
+<text x="565" y="83.0" text-anchor="end" class="tick">56.6</text>
+<line x1="572" y1="79" x2="572" y2="243" class="axis"/>
+<line x1="572" y1="243" x2="934" y2="243" class="axis"/>
+<text x="572.0" y="259" text-anchor="middle" class="tick">0.1</text>
+<text x="662.5" y="259" text-anchor="middle" class="tick">0.3</text>
+<text x="753.0" y="259" text-anchor="middle" class="tick">0.5</text>
+<text x="843.5" y="259" text-anchor="middle" class="tick">0.7</text>
+<text x="934.0" y="259" text-anchor="middle" class="tick">0.9</text>
+<polyline points="572.0,242.7 617.2,242.3 662.5,242.1 707.8,241.8 753.0,241.5 798.2,241.2 843.5,240.9 888.8,240.6 934.0,240.4" stroke="#1769aa" class="series"/>
+<line x1="520" y1="283" x2="538" y2="283" stroke="#1769aa" class="series"/>
+<text x="543" y="287" class="legend">Chain measured</text>
+<polyline points="572.0,242.7 617.2,242.4 662.5,242.1 707.8,241.8 753.0,241.6 798.2,241.3 843.5,241.0 888.8,240.7 934.0,240.4" stroke="#64a6d9" class="series"/>
+<line x1="725" y1="283" x2="743" y2="283" stroke="#64a6d9" class="series"/>
+<text x="748" y="287" class="legend">Chain theory</text>
+<polyline points="572.0,239.8 617.2,239.1 662.5,238.6 707.8,237.9 753.0,236.5 798.2,233.9 843.5,225.6 888.8,213.1 934.0,162.5" stroke="#c62828" class="series"/>
+<line x1="520" y1="296" x2="538" y2="296" stroke="#c62828" class="series"/>
+<text x="543" y="300" class="legend">Linear measured</text>
+<polyline points="572.0,239.8 617.2,239.3 662.5,238.6 707.8,237.5 753.0,235.8 798.2,232.5 843.5,225.4 888.8,205.3 934.0,96.6" stroke="#ef7777" class="series"/>
+<line x1="725" y1="296" x2="743" y2="296" stroke="#ef7777" class="series"/>
+<text x="748" y="300" class="legend">Linear theory</text>
+<text x="30" y="368" class="panel-title">Successful lookup — ns/query</text>
+<line x1="82" y1="548.0" x2="444" y2="548.0" class="grid"/>
+<text x="75" y="552.0" text-anchor="end" class="tick">0.0</text>
+<line x1="82" y1="507.0" x2="444" y2="507.0" class="grid"/>
+<text x="75" y="511.0" text-anchor="end" class="tick">912.7</text>
+<line x1="82" y1="466.0" x2="444" y2="466.0" class="grid"/>
+<text x="75" y="470.0" text-anchor="end" class="tick">1825.4</text>
+<line x1="82" y1="425.0" x2="444" y2="425.0" class="grid"/>
+<text x="75" y="429.0" text-anchor="end" class="tick">2738.1</text>
+<line x1="82" y1="384.0" x2="444" y2="384.0" class="grid"/>
+<text x="75" y="388.0" text-anchor="end" class="tick">3650.8</text>
+<line x1="82" y1="384" x2="82" y2="548" class="axis"/>
+<line x1="82" y1="548" x2="444" y2="548" class="axis"/>
+<text x="82.0" y="564" text-anchor="middle" class="tick">0.1</text>
+<text x="172.5" y="564" text-anchor="middle" class="tick">0.3</text>
+<text x="263.0" y="564" text-anchor="middle" class="tick">0.5</text>
+<text x="353.5" y="564" text-anchor="middle" class="tick">0.7</text>
+<text x="444.0" y="564" text-anchor="middle" class="tick">0.9</text>
+<polyline points="82.0,473.4 127.2,433.7 172.5,474.7 217.8,474.7 263.0,467.6 308.2,479.1 353.5,479.5 398.8,418.6 444.0,477.3" stroke="#1769aa" class="series"/>
+<line x1="30" y1="588" x2="48" y2="588" stroke="#1769aa" class="series"/>
+<text x="53" y="592" class="legend">Chaining</text>
+<polyline points="82.0,463.4 127.2,469.1 172.5,469.6 217.8,468.5 263.0,408.0 308.2,469.0 353.5,461.8 398.8,401.6 444.0,455.5" stroke="#c62828" class="series"/>
+<line x1="235" y1="588" x2="253" y2="588" stroke="#c62828" class="series"/>
+<text x="258" y="592" class="legend">Linear probing</text>
+<text x="520" y="368" class="panel-title">Unsuccessful lookup — ns/query</text>
+<line x1="572" y1="548.0" x2="934" y2="548.0" class="grid"/>
+<text x="565" y="552.0" text-anchor="end" class="tick">0.0</text>
+<line x1="572" y1="507.0" x2="934" y2="507.0" class="grid"/>
+<text x="565" y="511.0" text-anchor="end" class="tick">1121.6</text>
+<line x1="572" y1="466.0" x2="934" y2="466.0" class="grid"/>
+<text x="565" y="470.0" text-anchor="end" class="tick">2243.3</text>
+<line x1="572" y1="425.0" x2="934" y2="425.0" class="grid"/>
+<text x="565" y="429.0" text-anchor="end" class="tick">3364.9</text>
+<line x1="572" y1="384.0" x2="934" y2="384.0" class="grid"/>
+<text x="565" y="388.0" text-anchor="end" class="tick">4486.6</text>
+<line x1="572" y1="384" x2="572" y2="548" class="axis"/>
+<line x1="572" y1="548" x2="934" y2="548" class="axis"/>
+<text x="572.0" y="564" text-anchor="middle" class="tick">0.1</text>
+<text x="662.5" y="564" text-anchor="middle" class="tick">0.3</text>
+<text x="753.0" y="564" text-anchor="middle" class="tick">0.5</text>
+<text x="843.5" y="564" text-anchor="middle" class="tick">0.7</text>
+<text x="934.0" y="564" text-anchor="middle" class="tick">0.9</text>
+<polyline points="572.0,488.4 617.2,503.9 662.5,513.5 707.8,514.4 753.0,482.6 798.2,515.7 843.5,515.9 888.8,489.8 934.0,512.9" stroke="#1769aa" class="series"/>
+<line x1="520" y1="588" x2="538" y2="588" stroke="#1769aa" class="series"/>
+<text x="543" y="592" class="legend">Chaining</text>
+<polyline points="572.0,480.0 617.2,501.1 662.5,509.9 707.8,509.4 753.0,469.1 798.2,505.9 843.5,496.4 888.8,462.9 934.0,401.6" stroke="#c62828" class="series"/>
+<line x1="725" y1="588" x2="743" y2="588" stroke="#c62828" class="series"/>
+<text x="748" y="592" class="legend">Linear probing</text>
+<text x="500" y="640" text-anchor="middle" class="tick">Load factor (entries / 1000 buckets)</text>
+</svg>

@@ -1,17 +1,28 @@
 """URL shortening backed by the project's custom hash table."""
 
+from typing import Literal
 from urllib.parse import urlsplit
 
 from src.base62 import encode
 from src.hash_table import HashTable
+from src.linear_probing import LinearProbingHashTable
 
 
 class Shortener:
     """Assign deterministic base62 codes to valid HTTP(S) URLs."""
 
-    def __init__(self) -> None:
-        self._url_to_code: HashTable[str] = HashTable()
-        self._code_to_url: HashTable[str] = HashTable()
+    def __init__(
+        self, table_type: Literal["chaining", "linear_probing"] = "chaining"
+    ) -> None:
+        if table_type == "chaining":
+            table_class = HashTable
+        elif table_type == "linear_probing":
+            table_class = LinearProbingHashTable
+        else:
+            raise ValueError("table_type must be 'chaining' or 'linear_probing'")
+
+        self._url_to_code: HashTable[str] | LinearProbingHashTable[str] = table_class()
+        self._code_to_url: HashTable[str] | LinearProbingHashTable[str] = table_class()
         self._next_id = 0
 
     def shorten(self, url: str) -> str:

@@ -1,6 +1,6 @@
 """A string-keyed hash table using separate chaining and Horner hashing."""
 
-from typing import Generic, TypeVar
+from typing import Generic, Iterator, TypeVar
 
 
 Value = TypeVar("Value")
@@ -66,6 +66,22 @@ class HashTable(Generic[Value]):
         entry = self._find(key)
         return None if entry is None else entry.value
 
+    def delete(self, key: str) -> bool:
+        index = self._index(key)
+        entry = self._buckets[index]
+        previous = None
+        while entry is not None:
+            if entry.key == key:
+                if previous is None:
+                    self._buckets[index] = entry.next
+                else:
+                    previous.next = entry.next
+                self._size -= 1
+                return True
+            previous = entry
+            entry = entry.next
+        return False
+
     def __contains__(self, key: object) -> bool:
         if not isinstance(key, str):
             return False
@@ -73,6 +89,13 @@ class HashTable(Generic[Value]):
 
     def __len__(self) -> int:
         return self._size
+
+    def items(self) -> Iterator[tuple[str, Value]]:
+        for bucket in self._buckets:
+            entry = bucket
+            while entry is not None:
+                yield entry.key, entry.value
+                entry = entry.next
 
     def _resize(self) -> None:
         old_buckets = self._buckets

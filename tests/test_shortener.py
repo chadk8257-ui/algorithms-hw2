@@ -3,9 +3,11 @@ import unittest
 from src.shortener import Shortener
 
 
-class ShortenerTests(unittest.TestCase):
+class ShortenerContractTests:
+    table_type = "chaining"
+
     def setUp(self):
-        self.shortener = Shortener()
+        self.shortener = Shortener(table_type=self.table_type)
 
     def test_http_and_https_urls_round_trip(self):
         urls = (
@@ -52,6 +54,14 @@ class ShortenerTests(unittest.TestCase):
             with self.subTest(url=url[:40]):
                 with self.assertRaises(ValueError):
                     self.shortener.shorten(url)
+
+
+class ChainingShortenerTests(ShortenerContractTests, unittest.TestCase):
+    table_type = "chaining"
+
+
+class LinearProbingShortenerTests(ShortenerContractTests, unittest.TestCase):
+    table_type = "linear_probing"
 
 
 if __name__ == "__main__":
