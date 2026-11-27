@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" viewBox="0 0 1100 760">
+<style>
+text{font-family:Arial,sans-serif;fill:#222}
+.title{font-size:22px;font-weight:bold}
+.panel-title{font-size:15px;font-weight:bold}
+.tick,.legend{font-size:11px}
+.grid{stroke:#ddd;stroke-width:1}
+.axis{stroke:#555;stroke-width:1}
+.series{fill:none;stroke-width:2.5}
+</style>
+<text x="550" y="32" text-anchor="middle" class="title">Separate chaining vs. load factor</text>
+<text x="65" y="85" class="panel-title">Successful lookups — comparisons/query</text>
+<line x1="123" y1="305.0" x2="495" y2="305.0" class="grid"/>
+<text x="115" y="309.0" text-anchor="end" class="tick">0.0</text>
+<line x1="123" y1="255.5" x2="495" y2="255.5" class="grid"/>
+<text x="115" y="259.5" text-anchor="end" class="tick">0.9</text>
+<line x1="123" y1="206.0" x2="495" y2="206.0" class="grid"/>
+<text x="115" y="210.0" text-anchor="end" class="tick">1.7</text>
+<line x1="123" y1="156.5" x2="495" y2="156.5" class="grid"/>
+<text x="115" y="160.5" text-anchor="end" class="tick">2.6</text>
+<line x1="123" y1="107.0" x2="495" y2="107.0" class="grid"/>
+<text x="115" y="111.0" text-anchor="end" class="tick">3.4</text>
+<line x1="123" y1="107" x2="123" y2="305" class="axis"/>
+<line x1="123" y1="305" x2="495" y2="305" class="axis"/>
+<text x="123.0" y="323" text-anchor="middle" class="tick">0.25</text>
+<text x="197.4" y="323" text-anchor="middle" class="tick">1</text>
+<text x="296.6" y="323" text-anchor="middle" class="tick">2</text>
+<text x="395.8" y="323" text-anchor="middle" class="tick">3</text>
+<text x="495.0" y="323" text-anchor="middle" class="tick">4</text>
+<polyline points="123.0,235.1 147.8,233.3 172.6,228.5 197.4,219.8 222.2,214.1 247.0,205.5 271.8,197.1 296.6,192.3 321.4,184.3 346.2,176.1 371.0,168.8 395.8,162.0 420.6,154.1 445.4,147.6 470.2,141.3 495.0,133.2" stroke="#1769aa" class="series"/>
+<line x1="123.0" y1="347" x2="143.0" y2="347" stroke="#1769aa" class="series"/>
+<text x="149.0" y="351" class="legend">Measured</text>
+<polyline points="123.0,240.4 147.8,233.3 172.6,226.1 197.4,218.9 222.2,211.7 247.0,204.6 271.8,197.4 296.6,190.2 321.4,183.0 346.2,175.9 371.0,168.7 395.8,161.5 420.6,154.3 445.4,147.2 470.2,140.0 495.0,132.8" stroke="#e65100" class="series"/>
+<line x1="473.0" y1="347" x2="493.0" y2="347" stroke="#e65100" class="series"/>
+<text x="499.0" y="351" class="legend">Theory</text>
+<text x="565" y="85" class="panel-title">Unsuccessful lookups — comparisons/query</text>
+<line x1="623" y1="305.0" x2="995" y2="305.0" class="grid"/>
+<text x="615" y="309.0" text-anchor="end" class="tick">0.0</text>
+<line x1="623" y1="255.5" x2="995" y2="255.5" class="grid"/>
+<text x="615" y="259.5" text-anchor="end" class="tick">1.1</text>
+<line x1="623" y1="206.0" x2="995" y2="206.0" class="grid"/>
+<text x="615" y="210.0" text-anchor="end" class="tick">2.3</text>
+<line x1="623" y1="156.5" x2="995" y2="156.5" class="grid"/>
+<text x="615" y="160.5" text-anchor="end" class="tick">3.4</text>
+<line x1="623" y1="107.0" x2="995" y2="107.0" class="grid"/>
+<text x="615" y="111.0" text-anchor="end" class="tick">4.6</text>
+<line x1="623" y1="107" x2="623" y2="305" class="axis"/>
+<line x1="623" y1="305" x2="995" y2="305" class="axis"/>
+<text x="623.0" y="323" text-anchor="middle" class="tick">0.25</text>
+<text x="697.4" y="323" text-anchor="middle" class="tick">1</text>
+<text x="796.6" y="323" text-anchor="middle" class="tick">2</text>
+<text x="895.8" y="323" text-anchor="middle" class="tick">3</text>
+<text x="995.0" y="323" text-anchor="middle" class="tick">4</text>
+<polyline points="623.0,294.2 647.8,283.5 672.6,272.7 697.4,262.0 722.2,251.2 747.0,240.4 771.8,229.7 796.6,218.9 821.4,208.2 846.2,197.4 871.0,186.6 895.8,175.9 920.6,165.1 945.4,154.3 970.2,143.6 995.0,132.8" stroke="#1769aa" class="series"/>
+<line x1="623.0" y1="347" x2="643.0" y2="347" stroke="#1769aa" class="series"/>
+<text x="649.0" y="351" class="legend">Measured</text>
+<polyline points="623.0,294.2 647.8,283.5 672.6,272.7 697.4,262.0 722.2,251.2 747.0,240.4 771.8,229.7 796.6,218.9 821.4,208.2 846.2,197.4 871.0,186.6 895.8,175.9 920.6,165.1 945.4,154.3 970.2,143.6 995.0,132.8" stroke="#e65100" class="series"/>
+<line x1="973.0" y1="347" x2="993.0" y2="347" stroke="#e65100" class="series"/>
+<text x="999.0" y="351" class="legend">Theory</text>
+<text x="65" y="425" class="panel-title">Successful get() — ns/query</text>
+<line x1="123" y1="645.0" x2="495" y2="645.0" class="grid"/>
+<text x="115" y="649.0" text-anchor="end" class="tick">0.0</text>
+<line x1="123" y1="595.5" x2="495" y2="595.5" class="grid"/>
+<text x="115" y="599.5" text-anchor="end" class="tick">957.0</text>
+<line x1="123" y1="546.0" x2="495" y2="546.0" class="grid"/>
+<text x="115" y="550.0" text-anchor="end" class="tick">1914.0</text>
+<line x1="123" y1="496.5" x2="495" y2="496.5" class="grid"/>
+<text x="115" y="500.5" text-anchor="end" class="tick">2870.9</text>
+<line x1="123" y1="447.0" x2="495" y2="447.0" class="grid"/>
+<text x="115" y="451.0" text-anchor="end" class="tick">3827.9</text>
+<line x1="123" y1="447" x2="123" y2="645" class="axis"/>
+<line x1="123" y1="645" x2="495" y2="645" class="axis"/>
+<text x="123.0" y="663" text-anchor="middle" class="tick">0.25</text>
+<text x="197.4" y="663" text-anchor="middle" class="tick">1</text>
+<text x="296.6" y="663" text-anchor="middle" class="tick">2</text>
+<text x="395.8" y="663" text-anchor="middle" class="tick">3</text>
+<text x="495.0" y="663" text-anchor="middle" class="tick">4</text>
+<polyline points="123.0,521.2 147.8,566.6 172.6,568.2 197.4,569.3 222.2,520.0 247.0,534.1 271.8,540.2 296.6,557.9 321.4,552.0 346.2,517.4 371.0,518.3 395.8,516.2 420.6,532.1 445.4,547.4 470.2,472.8 495.0,551.1" stroke="#1769aa" class="series"/>
+<line x1="123.0" y1="687" x2="143.0" y2="687" stroke="#1769aa" class="series"/>
+<text x="149.0" y="691" class="legend">Measured</text>
+<text x="565" y="425" class="panel-title">Unsuccessful get() — ns/query</text>
+<line x1="623" y1="645.0" x2="995" y2="645.0" class="grid"/>
+<text x="615" y="649.0" text-anchor="end" class="tick">0.0</text>
+<line x1="623" y1="595.5" x2="995" y2="595.5" class="grid"/>
+<text x="615" y="599.5" text-anchor="end" class="tick">1122.8</text>
+<line x1="623" y1="546.0" x2="995" y2="546.0" class="grid"/>
+<text x="615" y="550.0" text-anchor="end" class="tick">2245.7</text>
+<line x1="623" y1="496.5" x2="995" y2="496.5" class="grid"/>
+<text x="615" y="500.5" text-anchor="end" class="tick">3368.5</text>
+<line x1="623" y1="447.0" x2="995" y2="447.0" class="grid"/>
+<text x="615" y="451.0" text-anchor="end" class="tick">4491.3</text>
+<line x1="623" y1="447" x2="623" y2="645" class="axis"/>
+<line x1="623" y1="645" x2="995" y2="645" class="axis"/>
+<text x="623.0" y="663" text-anchor="middle" class="tick">0.25</text>
+<text x="697.4" y="663" text-anchor="middle" class="tick">1</text>
+<text x="796.6" y="663" text-anchor="middle" class="tick">2</text>
+<text x="895.8" y="663" text-anchor="middle" class="tick">3</text>
+<text x="995.0" y="663" text-anchor="middle" class="tick">4</text>
+<polyline points="623.0,562.0 647.8,601.2 672.6,599.4 697.4,596.0 722.2,555.0 747.0,597.9 771.8,593.3 796.6,589.4 821.4,598.3 846.2,594.8 871.0,562.5 895.8,579.4 920.6,576.8 945.4,598.4 970.2,472.8 995.0,564.3" stroke="#1769aa" class="series"/>
+<line x1="623.0" y1="687" x2="643.0" y2="687" stroke="#1769aa" class="series"/>
+<text x="649.0" y="691" class="legend">Measured</text>
+<text x="550" y="750" text-anchor="middle" class="tick">Load factor (entries / fixed capacity of 256)</text>
+</svg>
