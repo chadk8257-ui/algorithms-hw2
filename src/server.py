@@ -11,10 +11,12 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.hash_table import HashTable
+from src.linear_probing import LinearProbingHashTable
 from src.shortener import Shortener
 
 
 MAX_FORM_BYTES = 1_048_576
+Table = HashTable[str] | LinearProbingHashTable[str]
 
 
 def _page(title: str, content: str) -> str:
@@ -25,41 +27,139 @@ def _page(title: str, content: str) -> str:
     )
 
 
-def _render_hash_table(label: str, table: HashTable[str]) -> str:
-    sections = [f"<h2>{escape(label)}</h2>"]
-    for bucket_index, bucket in enumerate(table._buckets):
-        sections.append(
-            f'<section><h3>Bucket {bucket_index}</h3><ol>'
+def _hash_explanation(key: str, capacity: int) -> tuple[int, str]:
+    result = 0
+    steps = ["h = 0"]
+    for character in key:
+        code_point = ord(character)
+        previous = result
+        result = (31 * result + code_point) % capacity
+        steps.append(
+            f"(31 * {previous} + {code_point}) mod {capacity} = {result}"
         )
-        entry = bucket
-        if entry is None:
-            sections.append("<li><em>Empty</em></li>")
+    return result, "; ".join(steps)
 
-        while entry is not None:
-            key = entry.key
-            result = 0
-            steps = ["h = 0"]
-            for character in key:
-                code_point = ord(character)
-                previous = result
-                result = (31 * result + code_point) % table.capacity
-                steps.append(
-                    f"(31 * {previous} + {code_point}) mod {table.capacity} "
-                    f"= {result}"
-                )
-            calculation = "; ".join(steps)
+
+def _render_hash_table(label: str, table: Table) -> str:
+    sections = [f"<h2>{escape(label)}</h2>"]
+    if isinstance(table, HashTable):
+        for bucket_index, bucket in enumerate(table._buckets):
             sections.append(
-                "<li>"
-                f"<code>key={escape(key, quote=True)}</code> "
-                f"<code>value={escape(str(entry.value), quote=True)}</code><br>"
-                f"<small>Horner: {escape(calculation)}; "
-                f"bucket index = {result}</small>"
-                "</li>"
+                f'<section><h3>Bucket {bucket_index}</h3><ol>'
             )
-            entry = entry.next
+            entry = bucket
+            if entry is None:
+                sections.append("<li><em>Empty</em></li>")
 
-        sections.append("</ol></section>")
+            while entry is not None:
+                key = entry.key
+                home_index, calculation = _hash_explanation(key, table.capacity)
+                path = []
+                visited = bucket
+                while visited is not None:
+                    path.append(visited.key)
+                    if visited is entry:
+                        break
+                    visited = visited.next
+                visited_keys = " -> ".join(
+                    f'"{escape(visited_key, quote=True)}"' for visited_key in path
+                )
+                sections.append(
+                    "<li>"
+                    f"<code>key={escape(key, quote=True)}</code> "
+                    f"<code>value={escape(str(entry.value), quote=True)}</code><br>"
+                    f"<small>Horner: {escape(calculation)}; "
+                    f"bucket index = {home_index}; search path: "
+                    f"bucket {bucket_index} [{visited_keys}]</small>"
+                    "</li>"
+                )
+                entry = entry.next
+
+            sections.append("</ol></section>")
+        return "".join(sections)
+
+    for slot_index, slot in enumerate(table._slots):
+        sections.append(f'<section><h3>Slot {slot_index}</h3>')
+        if slot is None:
+            sections.append("<em>Empty</em></section>")
+            continue
+        if not hasattr(slot, "key"):
+            sections.append("<em>Tombstone</em></section>")
+            continue
+
+        key = slot.key
+        home_index, calculation = _hash_explanation(key, table.capacity)
+        path = []
+        index = home_index
+        for _ in range(table.capacity):
+            path.append(index)
+            if index == slot_index:
+                break
+            index = (index + 1) % table.capacity
+        visited_slots = " -> ".join(str(index) for index in path)
+        sections.append(
+            "<p>"
+            f"<code>key={escape(key, quote=True)}</code> "
+            f"<code>value={escape(str(slot.value), quote=True)}</code><br>"
+            f"<small>Horner: {escape(calculation)}; home slot = {home_index}; "
+            f"probe path: {visited_slots}</small></p></section>"
+        )
     return "".join(sections)
+
+
+def _table_for_strategy(table: Table, strategy: str) -> Table:
+    if strategy == "chaining" and isinstance(table, HashTable):
+        return table
+    if strategy == "linear_probing" and isinstance(table, LinearProbingHashTable):
+        return table
+
+    target: Table
+    if strategy == "chaining":
+        target = HashTable(capacity=table.capacity, max_load=None)
+    else:
+        target = LinearProbingHashTable(capacity=table.capacity, max_load=None)
+    for key, value in table.items():
+        target.set(key, value)
+    return target
+
+
+def _render_table_page(shortener: Shortener, selection: str) -> str:
+    options = (
+        ("both", "Both strategies"),
+        ("chaining", "Separate chaining"),
+        ("linear_probing", "Linear probing"),
+    )
+    selector = [
+        '<form method="get" action="/table"><label for="strategy">'
+        "Display strategy</label> "
+        '<select id="strategy" name="strategy" '
+        "onchange=\"this.form.submit()\">"
+    ]
+    for value, label in options:
+        selected = ' selected="selected"' if value == selection else ""
+        selector.append(
+            f'<option value="{value}"{selected}>{escape(label)}</option>'
+        )
+    selector.append("</select> <button type=\"submit\">Show</button></form>")
+
+    strategies = ("chaining", "linear_probing") if selection == "both" else (selection,)
+    content = [
+        "".join(selector),
+        "<p>Search paths show the bucket-chain nodes or linearly probed slots "
+        "visited. Horner steps use h = (31 * h + ord(character)) mod capacity.</p>",
+    ]
+    for strategy in strategies:
+        url_table = _table_for_strategy(shortener._url_to_code, strategy)
+        code_table = _table_for_strategy(shortener._code_to_url, strategy)
+        title = "Separate chaining" if strategy == "chaining" else "Linear probing"
+        content.extend(
+            [
+                f"<h2>{title}</h2>",
+                _render_hash_table("URL to code", url_table),
+                _render_hash_table("Code to URL", code_table),
+            ]
+        )
+    return _page("Hash table", "".join(content))
 
 
 def _valid_host(host: str) -> bool:
@@ -132,13 +232,23 @@ def create_server(
                 return
 
             if path == "/table":
-                content = (
-                    "<p>Each chain shows its keys and values. Horner steps use "
-                    "h = (31 * h + ord(character)) mod capacity.</p>"
-                    + _render_hash_table("URL to code", url_shortener._url_to_code)
-                    + _render_hash_table("Code to URL", url_shortener._code_to_url)
+                selection = next(
+                    (
+                        value
+                        for name, value in parse_qsl(urlsplit(self.path).query)
+                        if name == "strategy"
+                    ),
+                    "both",
                 )
-                self._send_html(200, _page("Hash table", content))
+                if selection not in ("both", "chaining", "linear_probing"):
+                    self._send_html(
+                        400,
+                        _page("Bad request", "<p>Unknown table strategy.</p>"),
+                    )
+                    return
+                self._send_html(
+                    200, _render_table_page(url_shortener, selection)
+                )
                 return
 
             if not path.startswith("/") or "/" in path[1:]:
